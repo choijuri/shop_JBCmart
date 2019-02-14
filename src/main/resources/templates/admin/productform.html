@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>productform</title>
+</head>
+<body>
+<h1>productform</h1>
+
+<form method="post" action="/admin/product" enctype="multipart/form-data">
+    productId : <input type="text" name="productId"><br>
+    productName : <input type="text" name="productName"><br>
+    productPrice : <input name="productPrice" ></input><br>
+    category : <select name="categoryId">
+    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+        </select><br>
+    image1 : <input type="file" name="image"><br>
+    image2 : <input type="file" name="image"><br>
+    <input
+            type="hidden"
+            th:name="${_csrf.parameterName}"
+            th:value="${_csrf.token}" />
+    <input type="submit" value="등록">
+</form>
+
+</body>
+</html>

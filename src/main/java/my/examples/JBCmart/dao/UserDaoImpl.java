@@ -1,6 +1,6 @@
 package my.examples.JBCmart.dao;
 
-import my.examples.JBCmart.dto.User;
+import my.examples.JBCmart.domain.User;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;

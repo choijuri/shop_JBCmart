@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>joinform</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+    <link rel="stylesheet" href="/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    <link rel="stylesheet" href="/css/jquery-ui.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+
+
+    <link rel="stylesheet" href="/css/aos.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+
+<div class="site-wrap">
+
+    <div class="site-section">
+        <div class="container">
+            <div class="row" style="margin:0 auto">
+                <div class="col-md-12" style="text-align:center">
+                    <h2 class="h3 mb-3 text-black">JOIN</h2>
+                </div>
+                <div class="col-md-7" style="margin:0 auto">
+
+                    <form action="/users/join" method="post" onsubmit="return tocheckpw()">
+
+                        <div class="p-3 p-lg-5 border">
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label for="c_id" class="text-black">Id <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="c_id" name="userId">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label for="c_password" class="text-black">Password <span class="text-danger">*</span></label>
+                                    <input type="password" class="form-control" id="c_password" name="password">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label for="c_password2" class="text-black">Password 확인 <span class="text-danger">*</span></label>
+                                    <input type="password" class="form-control" id="c_password2" name="password2"> &nbsp; <span id = "check" style="color:red;"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label for="c_name" class="text-black">Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="c_name" name="name">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label for="c_email" class="text-black">Email <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="c_email" name="email" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label for="c_phone_number" class="text-black">PhoneNumber </label>
+                                    <input type="text" class="form-control" id="c_phone_number" name="phone">
+                                </div>
+                            </div>
+                            <!--
+                            <div class="form-group row">
+                              <div class="col-md-12">
+                                <label for="c_message" class="text-black">Message </label>
+                                <textarea name="c_message" id="c_message" cols="30" rows="7" class="form-control"></textarea>
+                              </div>
+                            </div>
+                            -->
+                            <div class="form-group row">
+                                <div class="col-lg-12">
+                                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Join">
+                                </div>
+                            </div>
+                        </div>
+
+                        <input
+                                type="hidden"
+                                th:name="${_csrf.parameterName}"
+                                th:value="${_csrf.token}" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script type="text/javascript">
+    function tocheckpw() {
+        var userPWD = document.getElementById("c_password").value;
+        var userPWD1 = document.getElementById("c_password2").value;
+
+        if (userPWD != userPWD1) {
+            document.getElementById('check').innerHTML = '비밀번호가 일치하지 않습니다. 다시 입력해 주세요';
+            return false;
+        }
+    }
+</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/jquery-ui.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/aos.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>
