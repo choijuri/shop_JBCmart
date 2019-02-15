@@ -1,0 +1,24 @@
+div.product_box {
+    width:80%;
+    margin: 0 auto;
+    overflow:hidden;
+    box-sizing:border-box;
+}
+
+div.product_box .product_box2{
+    width:23.5%;
+    overflow:hidden;
+    box-sizing:border-box;
+    border: 1px solid #999;
+    float: left;
+    margin-right:2%;
+    margin-top: 3%;
+}
+
+
+div.product_box .product_box2:nth-child(4),
+div.product_box .product_box2:nth-child(8),
+div.product_box .product_box2:nth-child(12),
+div.product_box .product_box2:nth-child(16){
+    margin-right:0;
+}

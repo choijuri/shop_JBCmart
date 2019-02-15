@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/css/aos.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style1.css">
 
 </head>
 <body>
@@ -45,7 +46,7 @@
                                 <li>
                                     <a href="cart.html" class="site-cart">
                                         <span class="icon icon-shopping_cart"></span>
-                                        <span class="count">2</span>
+                                        <!--<span class="count">2</span>-->
                                     </a>
                                 </li>
                                 <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
@@ -59,7 +60,8 @@
         <nav class="site-navigation text-right text-md-center" role="navigation">
             <div class="container">
                 <ul class="site-menu js-clone-nav d-none d-md-block" style="padding:0">
-                    <li style="margin:0 3%"><a href="shop.html">운동화</a></li>
+                    <li style="margin:0 3%"><a href="#">All</a></li>
+                    <li style="margin:0 3%"><a href="#">운동화</a></li>
                     <li style="margin:0 3%"> <a href="#">구두</a></li>
                     <li style="margin:0 3%"><a href="#">슬리퍼</a></li>
                 </ul>
@@ -67,192 +69,74 @@
         </nav>
     </header>
 
-    <div class="site-blocks-cover" style="background-image: url(images/hero_1.jpg);" data-aos="fade">
-        <div class="container">
-            <div class="row align-items-start align-items-md-center justify-content-end">
-                <div class="col-md-5 text-center text-md-left pt-5 pt-md-0">
-                    <h1 class="mb-2">Finding Your Perfect Shoes</h1>
-                    <div class="intro-text text-center text-md-left">
-                        <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla. </p>
-                        <p>
-                            <a href="#" class="btn btn-sm btn-primary">Shop Now</a>
-                        </p>
-                    </div>
-                </div>
+    <div class="product_box" >
+        <div class="product_box2" th:each="product : ${products}" >
+            <div  class="img_box" >
+                <img th:if="${#arrays.length(product.imageFiles) > 0}" class="card-img-top" th:src="'/admin/images/' + ${product.imageFiles[0].id}" alt="Card image cap" >
+            </div>
+            <div class="text_box">
+                <h4 th:text="${product.productName}">product Name </h4>
+                <p th:text="${product.productPrice}">product price  </p>
             </div>
         </div>
-    </div>
+        </div>
 
-    <div class="site-section site-section-sm site-blocks-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="icon mr-4 align-self-start">
-                        <span class="icon-truck"></span>
-                    </div>
-                    <div class="text">
-                        <h2 class="text-uppercase">Free Shipping</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon mr-4 align-self-start">
-                        <span class="icon-refresh2"></span>
-                    </div>
-                    <div class="text">
-                        <h2 class="text-uppercase">Free Returns</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon mr-4 align-self-start">
-                        <span class="icon-help"></span>
-                    </div>
-                    <div class="text">
-                        <h2 class="text-uppercase">Customer Support</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="site-section site-blocks-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
-                    <a class="block-2-item" href="#">
-                        <figure class="image">
-                            <img src="images/women.jpg" alt="" class="img-fluid">
-                        </figure>
-                        <div class="text">
-                            <span class="text-uppercase">Collections</span>
-                            <h3>Women</h3>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
-                    <a class="block-2-item" href="#">
-                        <figure class="image">
-                            <img src="images/children.jpg" alt="" class="img-fluid">
-                        </figure>
-                        <div class="text">
-                            <span class="text-uppercase">Collections</span>
-                            <h3>Children</h3>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
-                    <a class="block-2-item" href="#">
-                        <figure class="image">
-                            <img src="images/men.jpg" alt="" class="img-fluid">
-                        </figure>
-                        <div class="text">
-                            <span class="text-uppercase">Collections</span>
-                            <h3>Men</h3>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!--<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">-->
+        <!--<div class="block-4 text-center border" th:each="product : ${products}">-->
+            <!--<figure class="block-4-image">-->
+                <!--<a href="shop-single.html"><img th:if="${#arrays.length(product.imageFiles) > 0}" th:src="'/admin/images/' + ${product.imageFiles[0].id}" alt="Card image cap" class="img-fluid"></a>-->
+            <!--</figure>-->
+            <!--<div class="block-4-text p-4">-->
+                <!--<h4 th:text="${product.productName}">product Name<a href="shop-single.html">Tank Top</a></h4>-->
 
-    <div class="site-section block-3 site-blocks-2 bg-light">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-7 site-section-heading text-center pt-4">
-                    <h2>Featured Products</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="nonloop-block-3 owl-carousel">
-                        <div class="item">
-                            <div class="block-4 text-center">
-                                <figure class="block-4-image">
-                                    <img src="images/cloth_1.jpg" alt="Image placeholder" class="img-fluid">
-                                </figure>
-                                <div class="block-4-text p-4">
-                                    <h3><a href="#">Tank Top</a></h3>
-                                    <p class="mb-0">Finding perfect t-shirt</p>
-                                    <p class="text-primary font-weight-bold">$50</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="block-4 text-center">
-                                <figure class="block-4-image">
-                                    <img src="images/shoe_1.jpg" alt="Image placeholder" class="img-fluid">
-                                </figure>
-                                <div class="block-4-text p-4">
-                                    <h3><a href="#">Corater</a></h3>
-                                    <p class="mb-0">Finding perfect products</p>
-                                    <p class="text-primary font-weight-bold">$50</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="block-4 text-center">
-                                <figure class="block-4-image">
-                                    <img src="images/cloth_2.jpg" alt="Image placeholder" class="img-fluid">
-                                </figure>
-                                <div class="block-4-text p-4">
-                                    <h3><a href="#">Polo Shirt</a></h3>
-                                    <p class="mb-0">Finding perfect products</p>
-                                    <p class="text-primary font-weight-bold">$50</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="block-4 text-center">
-                                <figure class="block-4-image">
-                                    <img src="images/cloth_3.jpg" alt="Image placeholder" class="img-fluid">
-                                </figure>
-                                <div class="block-4-text p-4">
-                                    <h3><a href="#">T-Shirt Mockup</a></h3>
-                                    <p class="mb-0">Finding perfect products</p>
-                                    <p class="text-primary font-weight-bold">$50</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="block-4 text-center">
-                                <figure class="block-4-image">
-                                    <img src="images/shoe_1.jpg" alt="Image placeholder" class="img-fluid">
-                                </figure>
-                                <div class="block-4-text p-4">
-                                    <h3><a href="#">Corater</a></h3>
-                                    <p class="mb-0">Finding perfect products</p>
-                                    <p class="text-primary font-weight-bold">$50</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                <!--<p th:text="${product.productPrice}">product price </p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
-    <div class="site-section block-8">
-        <div class="container">
-            <div class="row justify-content-center  mb-5">
-                <div class="col-md-7 site-section-heading text-center pt-4">
-                    <h2>Big Sale!</h2>
-                </div>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-md-12 col-lg-7 mb-5">
-                    <a href="#"><img src="images/blog_1.jpg" alt="Image placeholder" class="img-fluid rounded"></a>
-                </div>
-                <div class="col-md-12 col-lg-5 text-center pl-md-5">
-                    <h2><a href="#">50% less in all items</a></h2>
-                    <p class="post-meta mb-4">By <a href="#">Carl Smith</a> <span class="block-8-sep">&bullet;</span> September 3, 2018</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam iste dolor accusantium facere corporis ipsum animi deleniti fugiat. Ex, veniam?</p>
-                    <p><a href="#" class="btn btn-primary btn-sm">Shop Now</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+
+
+
+    <!--<div class="product_box" th:each="product : ${products}">-->
+        <!--<img th:if="${#arrays.length(product.imageFiles) > 0}" class="card-img-top" th:src="'/admin/images/' + ${product.imageFiles[0].id}" alt="Card image cap">-->
+        <!--<div class="card-body">-->
+            <!--<h2 class="card-title" th:text="${product.productName}">product Name</h2>-->
+            <!--<p class="card-text" th:text="${product.productPrice}">product price</p>-->
+            <!--<a href="#" class="btn btn-primary">Read More &rarr;</a>-->
+        <!--</div>-->
+        <!--<div class="card-footer text-muted" th:text="'Posted on ' + ${#dates.format(product.regDate, 'yyyy-MM-dd')} + ' by'">-->
+
+            <!--<a href="#">Start Bootstrap</a>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+    <!-- <div class="product_box"> -->
+    <!-- <div class="product_box2"> -->
+    <!-- <div  class="img_box"> -->
+    <!-- <img th:if="${#arrays.length(product.imageFiles) > 0}" class="card-img-top" th:src="'/products/images/' + ${product.imageFiles[0].id}" alt="Card image cap" > -->
+    <!-- </div> -->
+    <!-- <div class="text_box">  -->
+    <!-- <h4 th:text="${product.productName}">product Name> </h4> -->
+    <!-- <p th:text="${product.productPrice}">product price  </p> -->
+    <!-- </div> -->
+    <!-- </div> -->
+    <!-- </div> -->
+
+
+    <!-- Pagination -->
+    <ul class="pagination justify-content-center mb-4">
+        <li class="page-item">
+            <a class="page-link" href="#">&larr; Older</a>
+        </li>
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Newer &rarr;</a>
+        </li>
+    </ul>
+
 
     <footer class="site-footer border-top">
         <div class="container">

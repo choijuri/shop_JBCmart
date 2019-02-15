@@ -42,8 +42,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users/login").permitAll()
                 .antMatchers("/users/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/main").permitAll()
+                .antMatchers("/posts/images/**").permitAll()
                 .antMatchers("/").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/admin/product").hasRole("ADMIN")
+                .antMatchers("/admin/productdetail1").hasRole("ADMIN")
+
+                .antMatchers("/admin/images/{id}").permitAll()
                 .anyRequest().fullyAuthenticated()
                 .and()
                 .formLogin() // 사용자가 정의하는 로그인 화면을 만들겠다.

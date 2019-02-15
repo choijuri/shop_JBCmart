@@ -15,11 +15,11 @@ INSERT INTO category(id, name) VALUES(1,'운동화');
 INSERT INTO category(id, name) VALUES(2,'구두');
 INSERT INTO category(id, name) VALUES(3,'슬리퍼');
 
-INSERT INTO product(product_id,product_name,product_price,category_id,reg_date) VALUE ("aaa","상품이름a",55000,1,now());
-INSERT INTO product(product_id,product_name,product_price,category_id,reg_date) VALUE ("bbb","상품이름b",65000,1,now());
-INSERT INTO product(product_id,product_name,product_price,category_id,reg_date) VALUE ("ccc","상품이름c",75000,2,now());
-INSERT INTO product(product_id,product_name,product_price,category_id,reg_date) VALUE ("ddd","상품이름d",85000,3,now());
-INSERT INTO product(product_id,product_name,product_price,category_id,reg_date) VALUE ("eee","상품이름e",95000,2,now());
+-- INSERT INTO product(product_id,product_name,product_price,category_id,reg_date) VALUE ('aaa','상품이름a',55000,1,now());
+-- INSERT INTO product(product_id,product_name,product_price,category_id,reg_date) VALUE ('bbb','상품이름b',55000,2,now());
+-- INSERT INTO product(product_id,product_name,product_price,category_id,reg_date) VALUE ('ccc','상품이름c',55000,2,now());
+-- INSERT INTO product(product_id,product_name,product_price,category_id,reg_date) VALUE ('ddd','상품이름d',55000,3,now());
+-- INSERT INTO product(product_id,product_name,product_price,category_id,reg_date) VALUE ('eee','상품이름e',55000,3,now());
 
 -- insert into blog(id, title, url, account_id) values(1, 'HELLO JAVA', 'java', 1);
 -- insert into blog(id, title, url, account_id) values(2, 'HELLO JPA', 'JPA', 2);

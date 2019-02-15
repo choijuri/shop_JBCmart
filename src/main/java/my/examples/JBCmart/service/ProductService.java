@@ -17,6 +17,10 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
 
+    public final static String PRODUCTID_SEARCH ="productid_search";
+    public final static String PRODUCTNAME_SEARCH ="productname_search";
+
+
     @Transactional
     public Product addProduct(Product product, Long categoryId) {
         Optional<Category> optionalCategory = categoryRepository.findById(categoryId);
@@ -27,5 +31,13 @@ public class ProductService {
     @Transactional(readOnly = true)
     public List<Product> getProductAll(){
         return productRepository.findAll();
+    }
+
+
+    @Transactional(readOnly = true )
+    public List<Product> getProducts(int page, Long categoryId, String searchKind, String searchStr) {
+        int limit = 16;
+        int start = page *limit -limit;
+        return productRepository.getProducts(categoryId, start,limit, searchKind,searchStr);
     }
 }

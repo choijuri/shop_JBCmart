@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ProductRepositoryCustom {
     public List<Product> getProducts(Long categoryId, int start, int limit, String searchKind, String searchStr);
-    public List<Product> getProductsCount(Long categoryId, String searchKind, String searchStr);
+    public Long getProductsCount(Long categoryId, String searchKind, String searchStr);
 }

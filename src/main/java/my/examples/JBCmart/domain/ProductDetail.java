@@ -12,8 +12,9 @@ import javax.persistence.*;
 public class ProductDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동증가.
+    private Long id;
     private String productColor;
-    private String productQuantity;
+    private Long productQuantity;
     private String productSize;
 
     @ManyToOne
