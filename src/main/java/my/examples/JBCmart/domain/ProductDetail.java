@@ -18,6 +18,10 @@ public class ProductDetail {
     private String productSize;
 
     @ManyToOne
-    @JoinColumn(name = "productId")
+    @JoinColumn(name = "product_id")
     private Product product;
+
+    public ProductDetail(){
+    }
+
 }

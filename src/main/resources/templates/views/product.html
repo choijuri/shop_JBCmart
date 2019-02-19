@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>product</title>
+</head>
+<body>
+<div class="col-sm-6 col-lg-3 mb-4" data-aos="fade-up">
+    <div class="block-4 text-center border">
+        <figure class="block-4-image">
+            <a href="#">
+                <img th:if="${#arrays.length(product.imageFiles) > 0}" th:src="'/admin/images/' + ${product.imageFiles[0].id}" alt="Image placeholder" class="img-fluid">
+            </a>
+        </figure>
+        <div class="block-4-text p-4">
+            <h3 class="mb-0" th:text="${product.productName}">product Name </h3>
+            <p class="mb-0" th:text="${product.productId}">productId </p>
+            <p class="text-primary font-weight-bold" th:text="${product.productPrice}">product price  </p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

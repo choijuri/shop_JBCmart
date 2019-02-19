@@ -38,11 +38,6 @@
 
 <form onclick='javascript()' value='등록'>
 
-    productId : <select name="productId">
-    <option th:each="product : ${products}" th:value="${product.productId}" th:text="${product.productName}"></option>
-    </select>
-
-    <br>
 
     <li><input id="size1" type="checkbox" name="size" value="230" /><label for="size1">230</label></li>
     <li><input id="size2" type="checkbox" name="size" value="240" /><label for="size2">240</label></li>
@@ -57,26 +52,30 @@
 
 
 
+    <input id="DoIt" type="button" value="선택"/>
 </form>
-<input id="DoIt" type="button" value="선택">
 
-<p>
-    size =<span id="result1"></span><br>
-    color =<span id="result2"></span>
-</p>
 
-<form action="/admin/productDetailform1" method="post">
-    <select id="size_sel"  style="width:100px"></select>
-    <select id="color_sel"style="width:100px" ></select>
-    <input  type="number" name="quantity" min="1" max="100">
+<form method="post" action="/admin/productdetail" >
+
+    productId :
+    <select name="productId">
+    <option th:each="product : ${products}" th:value="${product.productId}" th:text="${product.productName}"></option>
+    </select>
+
+    <br>
+
+    <select id="size_sel"  style="width:100px" name="productSize"></select>
+    <select id="color_sel" style="width:100px" name="productColor"></select>
+    <input  type="number" name="productQuantity" min="1" max="100"/>
 
     <input
             type="hidden"
             th:name="${_csrf.parameterName}"
             th:value="${_csrf.token}" />
 
+    <input type="submit" value="등록">
 
-    <input type="submit" value="등록"/>
 </form>
 
 </body>

@@ -35,12 +35,25 @@
 
                     <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
                         <div class="site-logo">
-                            <a href="index.html" class="js-logo-clone">JBCmart</a>
+                            <a href="/main" class="js-logo-clone">JBCmart</a>
                         </div>
                     </div>
 
+
                     <div class="col-6 col-md-4 order-3 order-md-3 text-right">
+
                         <div class="site-top-icons">
+                            <ul  style="margin-bottom: 10px; ">
+                                <li th:if="${isLogin}">
+                                    <span style="font-weight: bold"  th:text="${#authentication.principal.name}+' 님 &nbsp;&nbsp;  | &nbsp;&nbsp;&nbsp; '"> </span>
+                                    <a href="/logout">logout</a><br>
+                                </li>
+                                <li th:if="${!isLogin}">
+                                    <a style="margin-right: 10px;" href="/users/login">login</a>
+                                    <a href="/users/join">join</a><br>
+                                </li>
+                            </ul>
+
                             <ul>
                                 <li><a href="#"><span class="icon icon-person"></span></a></li>
                                 <li>
@@ -57,29 +70,53 @@
                 </div>
             </div>
         </div>
-        <nav class="site-navigation text-right text-md-center" role="navigation">
-            <div class="container">
-                <ul class="site-menu js-clone-nav d-none d-md-block" style="padding:0">
-                    <li style="margin:0 3%"><a href="#">All</a></li>
-                    <li style="margin:0 3%"><a href="#">운동화</a></li>
-                    <li style="margin:0 3%"> <a href="#">구두</a></li>
-                    <li style="margin:0 3%"><a href="#">슬리퍼</a></li>
+        <nav class="site-navigation text-right text-md-center" role="navigation" style="border-bottom: 1px solid #ebebeb; padding: 0; margin-bottom: 5%;">
+            <div class="container"  >
+                <ul class="site-menu js-clone-nav d-none d-md-block" style="padding:0;">
+                    <li style="margin:0 3%"><a href="/main">All</a></li>
+                    <li style="margin:0 3%"><a href="/main?categoryId=1">운동화</a></li>
+                    <li style="margin:0 3%"> <a href="/main?categoryId=2">구두</a></li>
+                    <li style="margin:0 3%"><a href="/main?categoryId=3">슬리퍼</a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
-    <div class="product_box" >
-        <div class="product_box2" th:each="product : ${products}" >
-            <div  class="img_box" >
-                <img th:if="${#arrays.length(product.imageFiles) > 0}" class="card-img-top" th:src="'/admin/images/' + ${product.imageFiles[0].id}" alt="Card image cap" >
-            </div>
-            <div class="text_box">
-                <h4 th:text="${product.productName}">product Name </h4>
-                <p th:text="${product.productPrice}">product price  </p>
+    <!--<div class="product_box" >-->
+        <!--<div class="product_box2" th:each="product : ${products}" >-->
+            <!--<div  class="img_box" >-->
+                <!--<img th:if="${#arrays.length(product.imageFiles) > 0}" class="card-img-top" th:src="'/admin/images/' + ${product.imageFiles[0].id}" alt="Card image cap" >-->
+            <!--</div>-->
+            <!--<div class="text_box">-->
+                <!--<h4 th:text="${product.productName}">product Name </h4>-->
+                <!--<p th:text="${product.productPrice}">product price  </p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+
+    <div class="col-md-12 mb-5" style="width:100%; margin:0 auto">
+
+       <!-- <h2 class="text-black h5" style="width:75%; margin:2% auto" >Shop All</h2> -->
+
+        <div class="row mb-5" style="width:80%; margin:0 auto" >
+            <div class="col-sm-6 col-lg-3 mb-4" data-aos="fade-up" th:each="product : ${products}" >
+                <div class="block-4 text-center border" >
+                    <figure class="block-4-image">
+                        <a th:href="'/views/'+${product.productId}">
+                            <img th:if="${#arrays.length(product.imageFiles) > 0}" th:src="'/admin/images/' + ${product.imageFiles[0].id}" alt="Image placeholder" class="img-fluid">
+                        </a>
+                    </figure>
+                    <div class="block-4-text p-4">
+                        <h3 class="mb-0" th:text="${product.productName}">product Name </h3>
+                        <p class="mb-0" th:text="${product.productId}">productId </p>
+                        <p class="text-primary font-weight-bold" th:text="${product.productPrice}">product price  </p>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
+    </div>
 
 
     <!--<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">-->

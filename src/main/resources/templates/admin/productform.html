@@ -9,7 +9,7 @@
 <form method="post" action="/admin/product" enctype="multipart/form-data">
     productId : <input type="text" name="productId"><br>
     productName : <input type="text" name="productName"><br>
-    productPrice : <input name="productPrice" ></input><br>
+    productPrice : <input type="text" name="productPrice" ></input><br>
     category : <select name="categoryId">
     <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
         </select><br>

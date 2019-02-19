@@ -6,9 +6,11 @@ import my.examples.JBCmart.domain.Category;
 import my.examples.JBCmart.domain.ImageFile;
 import my.examples.JBCmart.domain.Product;
 import my.examples.JBCmart.domain.ProductDetail;
+import my.examples.JBCmart.security.ShopSecurityUser;
 import my.examples.JBCmart.service.CategoryService;
 import my.examples.JBCmart.service.ImageFileService;
-import my.examples.JBCmart.service.ProductService;
+import my.examples.JBCmart.service.AdminService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -26,7 +28,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class AdminController {
 
-    private final ProductService productService;
+    private final AdminService adminService;
     private final CategoryService categoryService;
     private final ImageFileService imageFileService;
 
@@ -51,7 +53,7 @@ public class AdminController {
 
         // 로그인을 한 사용자 정보는 Security필터에서 SecurityContextHolder의 ThreadLocal에 저장된다.
         // 그래서 같은 쓰레드상이라면 로그인한 정보를 읽어들일 수 있다.
-        //ShopSecurityUser securityUser =(ShopSecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ShopSecurityUser securityUser =(ShopSecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 
         Product product = new Product();
@@ -76,40 +78,39 @@ public class AdminController {
                 }
             }
         }
-        productService.addProduct(product, categoryId);
+        adminService.addProduct(product, categoryId);
         return "redirect:/main";
     }
-
 
 
     //상품상세등록 관리자
     @GetMapping("/productdetailform1")
     public String productdetailform1(Model model){
-        List<Product> products = productService.getProductAll();
+        List<Product> products = adminService.getProductAll();
         model.addAttribute("products", products);
         return "admin/productdetailform1";
     }
 
-    @PostMapping("/productdetailform1")
-    public String product(
+    @PostMapping("/productdetail")
+    public String productdetail(
             @RequestParam(name = "productColor") String productColor,
             @RequestParam(name = "productSize") String productSize,
-            @RequestParam(name = "productPrice") Long productPrice,
             @RequestParam(name = "productId") String productId,
-            @RequestParam(name = "productQuantity") Long productQuantity)
-           {
+            @RequestParam(name = "productQuantity") Long productQuantity) {
 
-        // Assert.hasText(productId,"상품코드");
-        // Assert.hasText(productName,"상품이름");
+
+        Assert.hasText(productId,"상품코드");
+        Assert.hasText(productColor,"상품색상");
+
 
         ProductDetail productDetail = new ProductDetail();
+
         productDetail.setProductColor(productColor);
         productDetail.setProductSize(productSize);
         productDetail.setProductQuantity(productQuantity);
-       // productDetail.setProduct();
 
 
-        //productService.addProduct(product, categoryId);
+        adminService.addProductDetail(productDetail,productId);
         return "redirect:/main";
     }
 
