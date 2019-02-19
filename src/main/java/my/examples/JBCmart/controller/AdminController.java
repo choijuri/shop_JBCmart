@@ -2,10 +2,7 @@ package my.examples.JBCmart.controller;
 
 
 import lombok.RequiredArgsConstructor;
-import my.examples.JBCmart.domain.Category;
-import my.examples.JBCmart.domain.ImageFile;
-import my.examples.JBCmart.domain.Product;
-import my.examples.JBCmart.domain.ProductDetail;
+import my.examples.JBCmart.domain.*;
 import my.examples.JBCmart.security.ShopSecurityUser;
 import my.examples.JBCmart.service.CategoryService;
 import my.examples.JBCmart.service.ImageFileService;
@@ -104,13 +101,13 @@ public class AdminController {
 
 
         ProductDetail productDetail = new ProductDetail();
+        ProductDetailId productDetailId= new ProductDetailId();
 
-        productDetail.setProductColor(productColor);
-        productDetail.setProductSize(productSize);
+        productDetailId.setProductColor(productColor);
+        productDetailId.setProductSize(productSize);
         productDetail.setProductQuantity(productQuantity);
 
-
-        adminService.addProductDetail(productDetail,productId);
+        adminService.addProductDetail(productDetail, productDetailId,productId);
         return "redirect:/main";
     }
 

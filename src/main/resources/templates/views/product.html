@@ -16,7 +16,12 @@
             <h3 class="mb-0" th:text="${product.productName}">product Name </h3>
             <p class="mb-0" th:text="${product.productId}">productId </p>
             <p class="text-primary font-weight-bold" th:text="${product.productPrice}">product price  </p>
-        </div>
+            <p class="text-primary font-weight-bold" th:text="${product.productDetails[0].productQuantity}">product color  </p>
+            <p class="text-primary font-weight-bold" th:text="${product.productDetails[0].productDetailId.productSize}">product color  </p>
+            <p class="text-primary font-weight-bold" th:text="${product.productDetails[0].productDetailId.productColor}">product color  </p>
+
+            <br>
+         </div>
     </div>
 </div>
 

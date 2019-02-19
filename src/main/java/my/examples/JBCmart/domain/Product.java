@@ -5,9 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name="product")
@@ -25,27 +23,27 @@ public class Product {
     @Column(name = "reg_date")
     private Date regDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "product",
+    @OneToMany(mappedBy = "productDetailId.product",
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    private List<ProductDetail> productDetails;
+    private Set<ProductDetail> productDetails;
 
     @OneToMany(mappedBy = "product",
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    private List<ImageFile> imageFiles;
+    private Set<ImageFile> imageFiles;
 
     public Product(){
-        productDetails = new ArrayList<>();
-        imageFiles = new ArrayList<>();
+        productDetails = new HashSet<>();
+        imageFiles = new HashSet<>();
         regDate = new Date();
     }
 
     public void addImageFile(ImageFile imageFile) {
         if(imageFiles == null)
-            imageFiles = new ArrayList<>();
+            imageFiles = new HashSet<>();
         imageFile.setProduct(this); // 쌍방향이기 때문에 this를 참조하도록 한다.
         imageFiles.add(imageFile);
     }

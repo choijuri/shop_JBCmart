@@ -20,9 +20,15 @@ public interface ProductRepository extends JpaRepository<Product, String>, Produ
 
 
 
-    @Query("SELECT p FROM Product p INNER JOIN FETCH p.category LEFT JOIN FETCH p.productDetails WHERE p.productId = :productId")
+    @Query("SELECT distinct p FROM Product p INNER JOIN FETCH p.productDetails LEFT JOIN FETCH p.imageFiles WHERE p.productId = :productId")
     Product getProductById(@Param("productId") String productId);
 
-//    @Query("SELECT distinct p FROM Post p INNER JOIN FETCH p.category INNER JOIN FETCH p.account LEFT JOIN FETCH p.imageFiles WHERE p.id = :id")
-//    public Post getPost(@Param("id") Long id);
+//    @Query("SELECT p FROM Product p INNER JOIN FETCH p.category LEFT JOIN FETCH p.productDetails WHERE p.productId = :productId")
+//    Product getProductById(@Param("productId") String productId);
+//
+//    @Query("SELECT p FROM Product p WHERE p.productId = :productId")
+//    Product getProductById(@Param("productId") String productId);
+
+
+
 }

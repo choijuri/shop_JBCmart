@@ -10,16 +10,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class ProductDetail {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동증가.
-    private Long id;
-    private String productColor;
+    @EmbeddedId
+    private ProductDetailId productDetailId;
     private Long productQuantity;
-    private String productSize;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
 
     public ProductDetail(){
     }

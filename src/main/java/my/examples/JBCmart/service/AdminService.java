@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import my.examples.JBCmart.domain.Category;
 import my.examples.JBCmart.domain.Product;
 import my.examples.JBCmart.domain.ProductDetail;
+import my.examples.JBCmart.domain.ProductDetailId;
 import my.examples.JBCmart.repository.CategoryRepository;
 import my.examples.JBCmart.repository.ProductDetailRepository;
 import my.examples.JBCmart.repository.ProductRepository;
@@ -46,9 +47,11 @@ public class AdminService {
 
     //productDetail
     @Transactional
-    public ProductDetail addProductDetail(ProductDetail productDetail, String productId){
+    public ProductDetail addProductDetail(ProductDetail productDetail, ProductDetailId productDetailId, String productId){
         Optional<Product> optionalProduct = productRepository.findById(productId);
-        productDetail.setProduct(optionalProduct.get());
+        productDetailId.setProduct(optionalProduct.get());
+        //productDetail.setProduct(optionalProduct.get());
+        productDetail.setProductDetailId(productDetailId);
         return productDetailRepository.save(productDetail);
     }
 }
