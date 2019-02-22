@@ -3,27 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <title>product</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+    <link rel="stylesheet" href="/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    <link rel="stylesheet" href="/css/jquery-ui.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/css/aos.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+
+    <script type="text/javascript">
+
+        function change(color) {
+            document.getElementById("productsize").style.display="none";
+            if( color == "red" )
+            {   document.getElementById("productsize_black","productsize_white").style.display="none";
+                productsize_red.style.display = "inline"
+            }
+            if( color == "black" )
+            {   document.getElementById("productsize_red","productsize_white").style.display="none";
+                productsize_black.style.display = "inline"
+            }
+            if( color == "white" )
+            {   document.getElementById("productsize_black","productsize_red").style.display="none";
+                productsize_white.style.display = "inline"
+            }
+        }
+
+        function price_plus(){
+            var price = parseInt($("#productprice").val(),10);
+           var p = parseInt($("#total_price").text(),10);
+           var tot = p+price;
+           $("#total_price").text(tot);
+        }
+
+        function price_minus(){
+            var price = parseInt($("#productprice").val(),10);
+            var p = parseInt($("#total_price").text(),10);
+            var tot = p-price;
+            $("#total_price").text(tot);
+        }
+
+    </script>
+
 </head>
 <body>
-<div class="col-sm-6 col-lg-3 mb-4" data-aos="fade-up">
-    <div class="block-4 text-center border">
-        <figure class="block-4-image">
-            <a href="#">
-                <img th:if="${#arrays.length(product.imageFiles) > 0}" th:src="'/admin/images/' + ${product.imageFiles[0].id}" alt="Image placeholder" class="img-fluid">
-            </a>
-        </figure>
-        <div class="block-4-text p-4">
-            <h3 class="mb-0" th:text="${product.productName}">product Name </h3>
-            <p class="mb-0" th:text="${product.productId}">productId </p>
-            <p class="text-primary font-weight-bold" th:text="${product.productPrice}">product price  </p>
-            <p class="text-primary font-weight-bold" th:text="${product.productDetails[0].productQuantity}">product color  </p>
-            <p class="text-primary font-weight-bold" th:text="${product.productDetails[0].productDetailId.productSize}">product color  </p>
-            <p class="text-primary font-weight-bold" th:text="${product.productDetails[0].productDetailId.productColor}">product color  </p>
 
-            <br>
-         </div>
+<div class="site-wrap">
+
+
+    <div class="bg-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-0"><a href="/main">Home</a> <span class="mx-2 mb-0">&nbsp; &gt; &nbsp;</span> <span class="text-black" th:text="${product.category.name}+ '&nbsp; &gt; &nbsp;' +${product.productName}"></span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="site-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img th:if="${#arrays.length(product.imageFiles) > 0}" th:src="'/admin/images/' + ${product.imageFiles[0].id}" alt="Image" class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <h2 style="margin-left: 20px;" class="text-black" th:text="${product.productName}">product Name</h2>
+                    <hr>
+                    <p style="margin-left: 20px;" th:text="'상품코드 : &nbsp;'+${product.productId}">product id</p>
+                    <p style="margin-left: 20px;">배송비 : 무료배송</p>
+                    <p style="margin-left: 20px;" id ="a"><strong class="text-primary " th:text="'판매가 : &nbsp;'+${product.productPrice} +'원'">product price</strong></p>
+                    <input type="hidden" th:value="${product.productPrice}" id="productprice" >
+                    <hr>
+                    <form>
+                    <div class="mb-5" style="margin-left: 20px;">
+
+                            <p style="display: inline; font-weight: bold; margin-top: 20px;">color : &nbsp;</p>
+                            <select id="product_color" style="margin-bottom: 20px;" onChange="change(this.options[this.selectedIndex].value)">
+                                <option value='' selected> -- color -- </option>
+                                <option th:each="details : ${product.productDetails}" th:value="${details.productDetailId.productColor}" th:text="${details.productDetailId.productColor}">color
+                                </option>
+                            </select>
+                            <br>
+                        <p style="display: inline; font-weight: bold;">size : &nbsp;</p>
+
+                        <select id="productsize" style="margin-bottom: 20px;">
+                            <option value='' selected>-- size --</option>
+                        </select>
+
+                        <select id="productsize_red" style="margin-bottom: 20px; display: none;">
+                                <option value='' selected>-- size --</option>
+                                <option th:each="details : ${product.productDetails}" th:if="${(details.productDetailId.productColor) =='red'}" th:value="${details.productDetailId.productSize}" th:text="${details.productDetailId.productSize}">size
+                                </option>
+                            </select>
+                            <select id="productsize_black" style="margin-bottom: 20px; display: none;">
+                                <option value='' selected>-- size --</option>
+                                <option th:each="details : ${product.productDetails}" th:if="${(details.productDetailId.productColor) =='black'}" th:value="${details.productDetailId.productSize}" th:text="${details.productDetailId.productSize}">size
+                                </option>
+                            </select>
+                            <select id="productsize_white" style="margin-bottom: 20px; display: none;">
+                                <option value='' selected>-- size --</option>
+                                <option th:each="details : ${product.productDetails}" th:if="${(details.productDetailId.productColor) =='white'}" th:value="${details.productDetailId.productSize}" th:text="${details.productDetailId.productSize}">size
+                                </option>
+                            </select>
+
+                        <br>
+                        <p style="float: left; font-weight: bold;">quantity : &nbsp;</p>
+                        <div class="input-group mb-3" style="max-width: 120px; max-height: 40px; min-height: 20px; margin-left: 50px;">
+
+
+                            <div class="input-group-prepend" style="height: 30px;">
+                                <button class="btn btn-outline-primary js-btn-minus" type="button" style="padding:0 5px;" onclick="price_minus()">&minus;</button>
+                            </div>
+                            <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" style="height: 30px;">
+                            <div class="input-group-append" style="height: 30px;">
+                                <button class="btn btn-outline-primary js-btn-plus" type="button" style="padding:0 5px;" onclick="price_plus()">&plus;</button>
+                            </div>
+
+                        </div>
+
+                        <div style="float: left; font-weight: bold;">total price &nbsp;:&nbsp; </div>
+                        <div style="font-weight: bold; color: #7971ea;"  th:text="${product.productPrice}" id="total_price"></div>
+
+                    </div>
+                       <hr>
+                    <p><a href="cart.html" class="buy-now btn btn-sm color-primary border-primary">Add To Cart</a> &nbsp;&nbsp; <a href="cart.html" class="buy-now btn btn-sm btn-primary">Order</a></p>
+
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
+<!--<div class="col-sm-6 col-lg-3 mb-4" data-aos="fade-up">-->
+    <!--<div class="block-4 text-center border">-->
+        <!--<figure class="block-4-image">-->
+            <!--<a href="#">-->
+                <!--<img th:if="${#arrays.length(product.imageFiles) > 0}" th:src="'/admin/images/' + ${product.imageFiles[0].id}" alt="Image placeholder" class="img-fluid">-->
+            <!--</a>-->
+        <!--</figure>-->
+        <!--<div class="block-4-text p-4">-->
+            <!--<h3 class="mb-0" th:text="${product.productName}">product Name </h3>-->
+            <!--<p class="mb-0" th:text="${product.productId}">productId </p>-->
+            <!--<p class="text-primary font-weight-bold" th:text="${product.productPrice}">product price  </p>-->
+
+            <!--&lt;!&ndash;<div th:each="details : ${product.productDetails}">&ndash;&gt;-->
+            <!--&lt;!&ndash;<p class="text-primary font-weight-bold" th:text=${details.productQuantity}>product</p>&ndash;&gt;-->
+            <!--&lt;!&ndash;<p class="text-primary font-weight-bold" th:text=${details.productDetailId.productSize}>product</p>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div th:each="details : ${product.productDetails}">&ndash;&gt;-->
+            <!--&lt;!&ndash;<p class="text-primary font-weight-bold" th:text=${details.productDetailId.productColor}>product</p>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+            <!--<form>-->
+                <!--<select >-->
+                    <!--<option th:each="details : ${product.productDetails}" th:value="${details.productDetailId.productColor}" th:text="${details.productDetailId.productColor}">color-->
+                    <!--</option>-->
+                <!--</select>-->
+            <!--</form>-->
+
+
+
+            <!--&lt;!&ndash;<p class="text-primary font-weight-bold" th:text="${product.productDetails[0].productDetailId.productSize}">product color  </p>&ndash;&gt;-->
+            <!--&lt;!&ndash;<p class="text-primary font-weight-bold" th:text="${product.productDetails[0].productDetailId.productColor}">product color  </p>&ndash;&gt;-->
+            <!--&lt;!&ndash;<p class="text-primary font-weight-bold" th:text="${product.productDetails.productQuantity}">product color  </p>&ndash;&gt;-->
+            <!--<br>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/jquery-ui.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/aos.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+
 
 </body>
 </html>

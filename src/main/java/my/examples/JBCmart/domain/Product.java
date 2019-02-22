@@ -33,17 +33,17 @@ public class Product {
 
     @OneToMany(mappedBy = "product",
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    private Set<ImageFile> imageFiles;
+    private List<ImageFile> imageFiles;
 
     public Product(){
         productDetails = new HashSet<>();
-        imageFiles = new HashSet<>();
+        imageFiles = new ArrayList<>();
         regDate = new Date();
     }
 
     public void addImageFile(ImageFile imageFile) {
         if(imageFiles == null)
-            imageFiles = new HashSet<>();
+            imageFiles = new ArrayList<>();
         imageFile.setProduct(this); // 쌍방향이기 때문에 this를 참조하도록 한다.
         imageFiles.add(imageFile);
     }
